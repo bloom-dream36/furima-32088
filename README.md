@@ -1,24 +1,61 @@
-# README
+## Users
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column      |Type           |Options       |
+|------------|---------------|--------------|
+| nick-name  |  string      | null:false   |
+| email      |  string      | null:false   |
+| password   |  string      | null:false   |
+| first_name |  string      | null:false   |
+| last_name  |  string      | null:false   |
+|kana_first  |  string      | null:false   |
+|kana_last   |  string      | null:false   |
+| birthday   | integer      | null:false   |
+|------------|--------------|--------------|
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :purchases
 
-* Ruby version
+## items
 
-* System dependencies
+|Column        |Type           |Options           |
+|--------------|---------------|------------------|
+| image        |               |                  |
+| title        | text          | null:false       |
+| explanation  | text          | null:false       |
+| category     | text          | null:false       |
+| status       | text          | null:false       |
+| delivery_fee | string        | null:false       |
+| delivery_day | date          | null:false       |
+| price        | integer       | null:false       |
+| user         | references    | foreign_key:true | 
+|--------------|---------------|------------------| 
 
-* Configuration
+### Association
+- belongs_to :user
+- has_one    :purchases 
 
-* Database creation
+ |Column      |Type           |Options      |
+|------------|---------------|--------------|
+| user       | references    | foreign_key  |
+| item       | references    | foreign_key  | 
+| street     | references    | foreign_key  |
+|------------|---------------|--------------|
 
-* Database initialization
+### Association
+- has_one   :item
+- has_one   :street
 
-* How to run the test suite
+## streets
 
-* Services (job queues, cache servers, search engines, etc.)
+|Column           | Type           |Options           |
+|-----------------|---------------|-------------------|
+| postal_code     | string        | null:false        |
+| prefecture      | string        | null:false        |
+| municipalities  | integer       | null:false        |
+| address         | string        | null:false        |
+| tell            | string        | unique null:false |
+|-----------------|---------------|-------------------|
 
-* Deployment instructions
-
-* ...
+### Association
+- has_one   :purchases
