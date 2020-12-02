@@ -1,16 +1,16 @@
 ## Users
 
-|Column                |Type           |Options       |
-|----------------------|---------------|--------------|
-| nickname             |  string       | null:false   |
-| email                |  string       | null:false   |
-| encrypted_password   |  string       | null:false   |
-| first_name           |  string       | null:false   |
-| last_name            |  string       | null:false   |
-|kana_first            |  string       | null:false   |
-|kana_last             |  string       | null:false   |
-| birthday             |   date        |              |
-|----------------------|---------------|--------------|
+|Column                |Type           |Options             |
+|----------------------|---------------|--------------------|
+| nickname             |  string       | null:false         |
+| email                |  string       | unique null:false  |
+| encrypted_password   |  string       | null:false         |
+| first_name           |  string       | null:false         |
+| last_name            |  string       | null:false         |
+|kana_first            |  string       | null:false         |
+|kana_last             |  string       | null:false         |
+| birthday             |   date        | null:false         |
+|----------------------|---------------|--------------------|
 
 ### Association
 - has_many :items
@@ -32,15 +32,15 @@
 
 ### Association
 - belongs_to :user
-- has_one    :purchases 
+- has_one    :purchase
 
 ## purchases
 
- |Column      |Type           |Options      |
-|------------|---------------|--------------|
-| user       | references    | foreign_key  |
-| item       | references    | foreign_key  | 
-|------------|---------------|--------------|
+ |Column      |Type           |Options           |
+|------------|---------------|-------------------|
+| user       | references    | foreign_key:true  |
+| item       | references    | foreign_key:true  | 
+|------------|---------------|-------------------|
 
 ### Association
 - belongs_to   :user
@@ -55,9 +55,9 @@
 | prefecture_id   | integer       | null:false        |
 | municipality    | string        | null:false        |
 | address         | string        | null:false        |
-| building        | string        | null:false        |
+| building        | string        |                   |
 | tell            | string        | unique null:false |
 |-----------------|---------------|-------------------|
 
 ### Association
-- belongs_to  :purchases
+- belongs_to  :purchase
