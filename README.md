@@ -1,16 +1,16 @@
 ## Users
 
-|Column      |Type           |Options       |
-|------------|---------------|--------------|
-| nick-name  |  string      | null:false   |
-| email      |  string      | null:false   |
-| password   |  string      | null:false   |
-| first_name |  string      | null:false   |
-| last_name  |  string      | null:false   |
-|kana_first  |  string      | null:false   |
-|kana_last   |  string      | null:false   |
-| birthday   | integer      | null:false   |
-|------------|--------------|--------------|
+|Column                |Type           |Options       |
+|----------------------|---------------|--------------|
+| nick-name            |  string       | null:false   |
+| email                |  string       | null:false   |
+| encrypted_password   |  string       | null:false   |
+| first_name           |  string       | null:false   |
+| last_name            |  string       | null:false   |
+|kana_first            |  string       | null:false   |
+|kana_last             |  string       | null:false   |
+| birthday             |   date        | null:false   |
+|----------------------|---------------|--------------|
 
 ### Association
 - has_many :items
@@ -20,8 +20,7 @@
 
 |Column        |Type           |Options           |
 |--------------|---------------|------------------|
-| image        |               |                  |
-| title        | text          | null:false       |
+| title        | string        | null:false       |
 | explanation  | text          | null:false       |
 | category     | text          | null:false       |
 | status       | text          | null:false       |
@@ -35,15 +34,17 @@
 - belongs_to :user
 - has_one    :purchases 
 
+## purchases
+
  |Column      |Type           |Options      |
 |------------|---------------|--------------|
 | user       | references    | foreign_key  |
 | item       | references    | foreign_key  | 
-| street     | references    | foreign_key  |
 |------------|---------------|--------------|
 
 ### Association
-- has_one   :item
+- belongs_to   :user
+- belongs_to   :item
 - has_one   :street
 
 ## streets
@@ -52,10 +53,11 @@
 |-----------------|---------------|-------------------|
 | postal_code     | string        | null:false        |
 | prefecture      | string        | null:false        |
-| municipalities  | integer       | null:false        |
+| municipality    | string        | null:false        |
 | address         | string        | null:false        |
+| building        | string        | null:false        |
 | tell            | string        | unique null:false |
 |-----------------|---------------|-------------------|
 
 ### Association
-- has_one   :purchases
+- belongs_to  :purchases
