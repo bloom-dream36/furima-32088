@@ -29,7 +29,9 @@ class ItemsController < ApplicationController
   end
 
   def update
-
+    unless current_user == @item.user
+      redirect_to root_path
+    end
     if @item.update(item_params)
       redirect_to item_path, method: :show
     else
