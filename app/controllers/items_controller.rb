@@ -9,8 +9,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(item_params)
-
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -27,10 +26,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    # 更新後の遷移先をredirectで設定
-    if item.update(item_params)
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
       redirect_to item_path, method: :show
     else
       render :edit
