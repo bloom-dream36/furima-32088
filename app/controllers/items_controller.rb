@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    item = Item.new(item_params)
 
     if @item.save
       redirect_to root_path
@@ -20,6 +20,21 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+    # 更新後の遷移先をredirectで設定
+    if item.update(item_params)
+      redirect_to item_path, method: :show
+    else
+      render :edit
+    end
   end
   private
 
