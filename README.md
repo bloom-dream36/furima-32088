@@ -35,7 +35,7 @@
 - belongs_to :user
 - has_one    :purchase
 
-## purchases
+## order
 
  |Column      |Type           |Options           |
 |------------|---------------|-------------------|
@@ -46,19 +46,19 @@
 ### Association
 - belongs_to   :user
 - belongs_to   :item
-- has_one   :street
+- has_one   :address
 
-## streets
+## address  
 
 |Column           | Type           |Options           |
 |-----------------|---------------|-------------------|
 | postal_code     | string        | null:false        |
 | prefecture_id   | integer       | null:false        |
-| municipality    | string        | null:false        |
-| address         | string        | null:false        |
+| city            | string        | null:false        |
+| house_number    | string       | null:false        |
 | building        | string        |                   |
 | tell            | string        | unique null:false |
 |-----------------|---------------|-------------------|
 
 ### Association
-- belongs_to  :purchase
+- belongs_to  :order
