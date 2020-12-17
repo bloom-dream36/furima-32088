@@ -4,7 +4,7 @@ class AddressOrder
 
 
   with_options presence: true do
-    validates  :city, :house_number, :token
+    validates  :city, :house_number, :token, :item_id, :user_id
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "in invalid. Incluide hyphen(-)"}
     validates :tell, numericality: { only_integer: true,message: "半角数字で入力してください"} ,format: { with: /\A\d{11}\z/, message: "is out of setting"}
   end

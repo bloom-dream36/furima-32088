@@ -65,5 +65,15 @@ RSpec.describe AddressOrder, type: :model do
       @address_order.valid?
       expect(@address_order.errors.full_messages).to include("Token can't be blank")
     end
+    it 'item_idが空だと保存できない' do
+      @address_order.item_id = nil
+      @address_order.valid?
+      expect(@address_order.errors.full_messages).to include("Item can't be blank")
+    end
+    it 'user_idが空だと保存できない' do
+      @address_order.user_id = nil
+      @address_order.valid?
+      expect(@address_order.errors.full_messages).to include("User can't be blank")
+    end
   end
 end
