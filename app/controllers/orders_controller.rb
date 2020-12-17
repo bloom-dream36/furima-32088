@@ -2,13 +2,17 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:create, :index]
   before_action :item_data, only: [:index, :create]
   before_action :order_user, only: [:index, :create]
+ 
 
   def index
-    @address_order = AddressOrder.new
+    if @item.order != nil
+      redirect_to root_path
+    else
+      @address_order = AddressOrder.new
+    end
   end
 
   def create
-    # binding.pry
     @address_order = AddressOrder.new(order_params)
 
     if @address_order.valid? 
