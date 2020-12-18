@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
       )
   end
 
+
   def order_user
     unless current_user != @item.user
       redirect_to root_path
